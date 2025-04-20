@@ -684,15 +684,15 @@ elif page == "📱 Contact":
         st.markdown("""
         **📧 Email pro :**  
         [seynabousougou21@gmail.com](mailto:seynabousougou21@gmail.com)  
-        *(Réponse garantie sous 48h, sauf apocalypse zombie)*
+        *(Réponse garantie sous 48h)*
 
         **📱 Téléphone :**  
         [+33 6 67 04 73 41](tel:+33667047341)  
-        *(Dispo 9h-19h, sauf pendant la sieste)*
+        
 
         **💼 LinkedIn :**  
         [Seynabou Sougou](https://www.linkedin.com/in/seynabousougou/)  
-        *(Messages pros uniquement, pas de recruteurs fantômes 👻)*
+        
         """)
 
     with col2:
