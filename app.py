@@ -723,35 +723,35 @@ elif page == "🗓️ Calendrier":
     st.markdown("### 📜 Calendrier Officiel")
     st.write("Visualisez le document original fourni par l'école :")
 
-    # 🔗 URL brute du PDF sur GitHub
-pdf_url = "https://raw.githubusercontent.com/SeynabouS/portfolio-seynabou/main/calendrier_alternance.pdf"
-
-# 👁️ Affichage dans la page
-st.markdown(f"""
-    <div style="
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 15px 0;
-        overflow: auto;
-        height: 700px;
-    ">
-        <embed src="{pdf_url}" 
-               type="application/pdf" 
-               width="100%" 
-               height="100%"
-               style="min-height: 650px;">
-    </div>
-""", unsafe_allow_html=True)
-
-# ⬇️ Lien de téléchargement
-st.markdown(f"""
-    <a href="{pdf_url}" download="calendrier_alternance_2025-2026.pdf">
-        <button style="background-color: #4b8df8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-            📥 Télécharger le calendrier complet
-        </button>
-    </a>
-""", unsafe_allow_html=True)
+        # 🔗 URL brute du PDF sur GitHub
+    pdf_url = "https://raw.githubusercontent.com/SeynabouS/portfolio-seynabou/main/calendrier_alternance.pdf"
+    
+    # 👁️ Affichage dans la page
+    st.markdown(f"""
+        <div style="
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 15px 0;
+            overflow: auto;
+            height: 700px;
+        ">
+            <embed src="{pdf_url}" 
+                   type="application/pdf" 
+                   width="100%" 
+                   height="100%"
+                   style="min-height: 650px;">
+        </div>
+    """, unsafe_allow_html=True)
+    
+    # ⬇️ Lien de téléchargement
+    st.markdown(f"""
+        <a href="{pdf_url}" download="calendrier_alternance_2025-2026.pdf">
+            <button style="background-color: #4b8df8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                📥 Télécharger le calendrier complet
+            </button>
+        </a>
+    """, unsafe_allow_html=True)
 
 
 # Contact
