@@ -96,6 +96,56 @@ st.markdown("""
     }
     #MainMenu, footer, header {
     visibility: hidden;
+    }
+    .accueil-container {
+    color: #ffffff;
+    background: linear-gradient(135deg, rgba(30, 30, 45, 0.95), rgba(45, 45, 70, 0.95));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+.accueil-title {
+    color: #4b8df8;
+    margin-top: 0;
+    border-bottom: 2px solid rgba(75, 141, 248, 0.3);
+    padding-bottom: 10px;
+}
+.accent-text {
+    font-weight: bold;
+    background: linear-gradient(90deg, #4b8df8, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.accent-text2 {
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff4b4b, #ff8c00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.accent-text3 {
+    font-weight: bold;
+    background: linear-gradient(90deg, #8e44ad, #e74c3c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.specialties-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+.specialties-list li {
+    margin-bottom: 8px;
+}
+.quote-box {
+    margin-top: 25px;
+    padding: 12px;
+    background: rgba(75, 141, 248, 0.15);
+    border-radius: 8px;
+    border-left: 4px solid #4b8df8;
 }
 
 </style>
@@ -106,8 +156,8 @@ with st.sidebar:
     st.title("🔍 Navigation")
     st.image("https://media.giphy.com/media/L1R1tvI9svkIWwpVYr/giphy.gif", use_container_width=True)
     page = st.radio("Choisissez votre destination:", 
-                   ["🏠 Accueil", "🚀 Projets", "🛠️ Compétences", "📄 CV", "🗓️ Calendrier", "📱 Contact"])
-    
+               ["🏠 Accueil", "🚀 Projets", "🧑‍💼 Expériences", "🛠️ Compétences", "📄 CV", "🗓️ Calendrier", "📱 Contact"])
+
     st.markdown("---")
     st.markdown("""
     <div class="fun-fact">
@@ -131,22 +181,54 @@ if page == "🏠 Accueil":
         </div>
         """, unsafe_allow_html=True)
 
+    # Dans votre section Accueil, remplacez le contenu de with col2: par ceci :
     with col2:
         st.markdown("""
-        <div style="color:#ffffff;">
-        Salut, moi c'est Seynabou SOUGOU!
-        
-        **Apprentie ingénieure en cybersécurité** par jour, **hackeuse éthique** par passion, et **mangeuse de cookies** 🍪 (seulement ceux du navigateur).
-        
-        Mon quotidien ? Protéger le monde numérique contre les forces obscures du dark web! (Ou au moins essayer)
-        
-        🔥 **Spécialités :**
-        - Construire des forteresses numériques 🏰
-        - Traquer les intrus comme John Wick 🐶
-        - Automatiser tout ce qui bouge (et ce qui ne bouge pas aussi) 🤖
-        </div>
+            <div style="color: #ffffff;
+                        background: linear-gradient(135deg, rgba(30, 30, 45, 0.95) 0%, rgba(45, 45, 70, 0.95) 100%);
+                        backdrop-filter: blur(10px);
+                        -webkit-backdrop-filter: blur(10px);
+                        border-radius: 16px;
+                        padding: 30px;
+                        margin: 20px 0;
+                        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+                        border: 1px solid rgba(255, 255, 255, 0.15);
+                        font-family: 'Segoe UI', 'Roboto', sans-serif;">
+            
+            <h2 style="color: #4b8df8; margin-top: 0; border-bottom: 2px solid rgba(75, 141, 248, 0.3); padding-bottom: 10px;">
+                Salut, moi c'est Seynabou SOUGOU!
+            </h2>
+            
+            <div style="font-size: 1.1em; line-height: 1.6; margin: 15px 0;">
+                <span style="background: linear-gradient(90deg, #4b8df8, #00c6ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+                    Apprentie ingénieure en cybersécurité
+                </span> par jour, 
+                <span style="background: linear-gradient(90deg, #ff4b4b, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+                    hackeuse éthique
+                </span> par passion, et 
+                <span style="background: linear-gradient(90deg, #8e44ad, #e74c3c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold;">
+                    mangeuse de cookies
+                </span> 🍪 (seulement ceux du navigateur).
+            </div>
+            
+            <div style="font-size: 1.05em; line-height: 1.6; margin: 15px 0;">
+                Mon quotidien ? Protéger le monde numérique contre les forces obscures du dark web! 
+                <span style="font-style: italic;">(Ou au moins essayer)</span>
+            </div>
+            
+            <h3 style="color: #4b8df8; margin-top: 20px; border-bottom: 1px solid rgba(75, 141, 248, 0.3); padding-bottom: 5px;">
+                🔥 Spécialités :
+            </h3>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+                <li style="margin-bottom: 8px;">Construire des forteresses numériques 🏰</li>
+                <li style="margin-bottom: 8px;">Traquer les intrus comme John Wick 🐶</li>
+                <li style="margin-bottom: 8px;">Automatiser tout ce qui bouge (et ce qui ne bouge pas aussi) 🤖</li>
+            </ul>
+
+            </div>
         """, unsafe_allow_html=True)
-        
+
+
         st.markdown("""
         <div class="fun-fact">
         <b>⚡ Fun fact :</b> Saviez-vous que 95% des cyberattaques sont dues à des erreurs humaines ? 
@@ -368,6 +450,319 @@ elif page == "🚀 Projets":
         - Backups chiffrés
         """)
 
+elif page == "🧑‍💼 Expériences":
+    st.title("💼 Mon Parcours Professionnel")
+    
+    # Style CSS supplémentaire
+    st.markdown("""
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #4b8df8;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        .exp-card {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .exp-card::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #FF9F55;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+        .right::after {
+            left: -16px;
+        }
+        .exp-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .tech-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            margin: 3px;
+            background-color: #e6f7ff;
+            color: #0066cc;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .screenshot {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+            margin: 10px 0;
+            max-width: 100%;
+        }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Timeline des expériences
+    st.markdown("""
+    <div class="timeline">
+        <!-- Expérience 1 - SOC Analyst -->
+        <div class="exp-card left">
+            <div class="exp-content">
+                <h3>🔍 Analyste SOC</h3>
+                <h4>Orange Cyberdefense | 2024-2024</h4>
+                <p>Surveillance proactive des infrastructures critiques et réponse aux incidents de sécurité</p>
+                
+                <div style="margin: 15px 0;">
+                    <img src="https://via.placeholder.com/600x300?text=QRadar+Dashboard" alt="QRadar Dashboard" class="screenshot" style="width:100%">
+                    <p><i>Capture de mon dashboard QRadar personnalisé</i></p>
+                </div>
+                
+                <h5>🚀 Réalisations clés :</h5>
+                <ul>
+                    <li>Analyse de <b>150+ alertes/jour</b> sur QRadar avec triage automatisé</li>
+                    <li>Création de <b>12 playbooks XSOAR</b> réduisant le temps de réponse de 40%</li>
+                    <li>Intégration réussie Cortex XDR avec enrichissement automatique des alertes</li>
+                </ul>
+                
+                <h5>🛠️ Technologies utilisées :</h5>
+                <div style="margin: 10px 0;">
+                    <span class="tech-badge">QRadar</span>
+                    <span class="tech-badge">Cortex XDR</span>
+                    <span class="tech-badge">XSOAR</span>
+                    <span class="tech-badge">Ansible</span>
+                    <span class="tech-badge">Python</span>
+                </div>
+                
+                <button onclick="alert('Détails techniques disponibles sur demande')" style="background-color: #4b8df8; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+                    Voir un exemple de playbook
+                </button>
+            </div>
+        </div>
+        
+        <!-- Expérience 2 - Apprentie Réseaux Sécurité -->
+        <div class="exp-card right">
+            <div class="exp-content">
+                <h3>🛡️ Apprentie Réseaux & Sécurité</h3>
+                <h4>Société Générale | 2022-2025</h4>
+                <p>Audit et sécurisation des infrastructures réseau du groupe</p>
+                
+                <div style="margin: 15px 0;">
+                    <img src="https://via.placeholder.com/600x300?text=Script+Python+Analyse+Réseau" alt="Script Python" class="screenshot" style="width:100%">
+                    <p><i>Extrait de mon script d'analyse réseau automatisée</i></p>
+                </div>
+                
+                <h5>🚀 Réalisations clés :</h5>
+                <ul>
+                    <li>Développement d'un <b>outil SIG sécurisé</b> pour la cartographie réseau</li>
+                    <li>Automatisation des audits avec <b>réduction de 80% du temps d'analyse</b></li>
+                    <li>Mise en place d'un <b>système de scoring des vulnérabilités</b></li>
+                </ul>
+                
+                <h5>🛠️ Technologies utilisées :</h5>
+                <div style="margin: 10px 0;">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Pandas</span>
+                    <span class="tech-badge">Cisco ISE</span>
+                    <span class="tech-badge">TACACS+</span>
+                    <span class="tech-badge">PowerBI</span>
+                </div>
+                
+                <div style="background-color: #e6f7ff; padding: 10px; border-radius: 5px; margin-top: 10px;">
+                    <b>💡 Innovation :</b> Mon script Python a été adopté par 3 autres équipes pour standardiser les audits.
+                </div>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Section détaillée pour le projet phare
+    st.markdown("---")
+    st.header("🛠️ Projet Phare: Automatisation des Audits Réseau")
+    
+    tab1, tab2, tab3, tab4 = st.tabs(["📊 Contexte", "🖥️ Solution", "📈 Résultats", "🧑‍💻 Code Exemple"])
+    
+    with tab1:
+        st.markdown("""
+        ### Le Défi
+        - **Problème:** Processus manuel fastidieux pour analyser les livrables réseau (Excel)
+        - **Volume:** 50+ audits/mois avec 1000+ équipements chacun
+        - **Délai:** 2 jours/audit en analyse manuelle
+        
+        <div style="background-color: #fff5e6; padding: 15px; border-radius: 8px; margin: 15px 0;">
+            <b>🕵️‍♀️ Constat :</b> 80% du temps passé sur des tâches répétitives (vérification de cohérence, recherche d'anomalies)
+        </div>
+        """, unsafe_allow_html=True)
+        
+        st.image("https://via.placeholder.com/800x400?text=Processus+Manuel+vs+Automatisé", use_column_width=True)
+    
+    with tab2:
+        st.markdown("""
+        ### Architecture de la Solution
+        """)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("""
+            **📦 Composants :**
+            1. Module d'import Excel → DataFrame
+            2. Moteur de règles (200+ checks)
+            3. Génération de rapports (PDF/Excel)
+            4. Dashboard PowerBI
+            
+            **⚙️ Fonctionnalités :**
+            - Détection automatique des anomalies
+            - Scoring de vulnérabilités
+            - Alertes prioritaires
+            """)
+        with col2:
+            st.image("https://via.placeholder.com/400x300?text=Architecture+Solution", use_column_width=True)
+        
+        st.markdown("""
+        ```python
+        def analyze_network_data(df):
+            # 1. Vérification des doublons
+            dup_analysis = check_duplicates(df)
+            
+            # 2. Validation des configurations
+            config_errors = validate_configs(df)
+            
+            # 3. Calcul du score de sécurité
+            security_score = calculate_score(dup_analysis, config_errors)
+            
+            return generate_report(security_score)
+        ```
+        """)
+    
+    with tab3:
+        st.markdown("""
+        ### Impact Mesurable
+        """)
+        
+        metrics = {
+            "Temps d'analyse": ("⏱️", "2 jours → 2 heures", "-92%"),
+            "Précision": ("🎯", "85% → 99%", "+14%"),
+            "Couverture": ("🔍", "50 checks → 200+", "+300%")
+        }
+        
+        cols = st.columns(3)
+        for i, (name, (icon, value, delta)) in enumerate(metrics.items()):
+            cols[i].metric(f"{icon} {name}", value, delta)
+        
+        st.image("https://via.placeholder.com/800x400?text=Dashboard+PowerBI+Résultats", use_column_width=True)
+    
+    with tab4:
+        st.markdown("""
+        ### Extrait Significatif
+        """)
+        
+        code = """# Fonction principale d'analyse
+def process_audit(file_path):
+    try:
+        # Chargement des données
+        df = pd.read_excel(file_path)
+        
+        # Nettoyage initial
+        df = clean_data(df)
+        
+        # Analyse des vulnérabilités
+        results = {
+            'weak_passwords': detect_weak_passwords(df),
+            'config_errors': find_config_errors(df),
+            'compliance': check_compliance(df)
+        }
+        
+        # Génération du rapport
+        report = generate_report(results)
+        return report
+        
+    except Exception as e:
+        log_error(e)
+        raise AuditException(f"Erreur traitement: {str(e)}")
+        """
+        st.code(code, language='python')
+        
+        st.download_button(
+            label="📥 Télécharger un exemple de sortie",
+            data=pd.DataFrame({
+                'Équipement': ['SW-001', 'RT-002', 'FW-003'],
+                'Vulnérabilités': [2, 5, 1],
+                'Score': [85, 60, 95]
+            }).to_csv(index=False).encode('utf-8'),
+            file_name="exemple_rapport_audit.csv",
+            mime='text/csv'
+        )
+
+    # Section compétences acquises
+    st.markdown("---")
+    st.header("📈 Compétences Développées")
+    
+    skills = {
+        "Analytique": ["Analyse de logs", "Corrélation d'événements", "Tri des alertes"],
+        "Technique": ["QRadar", "Python", "XSOAR", "Cortex XDR"],
+        "Gestion": ["Documentation", "Priorisation", "Reporting"]
+    }
+    
+    cols = st.columns(3)
+    for i, (category, items) in enumerate(skills.items()):
+        with cols[i]:
+            st.markdown(f"### {category}")
+            for item in items:
+                st.markdown(f"- {item}")
+    
+    st.markdown("""
+    <div style="background-color: #e6f7ff; padding: 15px; border-radius: 8px; margin-top: 20px;">
+        <h3 style="color: #0066cc;">💡 Ce que ces expériences m'ont appris</h3>
+        <p>La sécurité est un équilibre constant entre <b>automatisation</b> et <b>expertise humaine</b>.
+        Mes outils réduisent le bruit mais c'est mon analyse qui fait la différence sur les vrais threats.</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Compétences
 elif page == "🛠️ Compétences":
