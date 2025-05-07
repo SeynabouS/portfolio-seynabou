@@ -668,7 +668,7 @@ elif page == "📄 CV":
         Voici mon CV détaillé. Vous pouvez le visualiser ci-dessous ou le télécharger.
         """)
         
-        with open("CV_Seynabou_Sougou.pdf", "rb") as file:
+        with open("CV_Seynabou_Sougou-2025-2026.pdf", "rb") as file:
             base64_pdf = base64.b64encode(file.read()).decode('utf-8')
             pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf"></iframe>'
             st.markdown(pdf_display, unsafe_allow_html=True)
