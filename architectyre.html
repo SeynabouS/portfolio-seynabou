@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Fonctionnelle - JuriTech</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1600px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .title {
+            font-size: 28px;
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .title i {
+            color: #f97316;
+        }
+        
+        .subtitle {
+            color: #64748b;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        .local-badge {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #1e40af;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+            border: 1px solid #93c5fd;
+        }
+        
+        .architecture-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            height: 700px;
+        }
+        
+        .top-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+            height: 450px;
+        }
+        
+        .middle-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+            height: 180px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .block {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .block:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .block-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .block-header i {
+            color: #f97316;
+        }
+        
+        .sub-block {
+            background-color: #f8fafc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .sub-block-title {
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+        
+        .sub-block-item {
+            padding: 8px 12px;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sub-block-item i {
+            color: #64748b;
+            font-size: 12px;
+            min-width: 16px;
+        }
+        
+        /* Couleurs des bordures pour identifier les zones */
+        .data-sources {
+            border-top: 4px solid #3b82f6;
+        }
+        
+        .juritech-app {
+            border-top: 4px solid #f97316;
+        }
+        
+        .local-storage {
+            border-top: 4px solid #10b981;
+        }
+        
+        .user-block {
+            border-top: 4px solid #8b5cf6;
+        }
+        
+        /* Indicateurs de flux */
+        .flow-indicator {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+            z-index: 10;
+        }
+        
+        .flow-indicator.blue {
+            background-color: #3b82f6;
+        }
+        
+        .flow-indicator.orange {
+            background-color: #f97316;
+        }
+        
+        .flow-indicator.green {
+            background-color: #10b981;
+        }
+        
+        .flow-indicator.purple {
+            background-color: #8b5cf6;
+        }
+        
+        /* Légende */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eaeaea;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 10px;
+            border-radius: 2px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .user-avatar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1e40af;
+        }
+        
+        .user-info h3 {
+            color: #1e3a8a;
+            margin-bottom: 5px;
+        }
+        
+        .user-info p {
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        .flow-path {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, transparent);
+            z-index: 1;
+            opacity: 0.3;
+        }
+        
+        /* Grille pour montrer les relations */
+        .connection-hint {
+            position: absolute;
+            font-size: 11px;
+            color: #64748b;
+            background-color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px dashed #cbd5e1;
+            z-index: 5;
+        }
+        
+        /* Organisation interne de JuriTech */
+        .juritech-internal {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            height: 100%;
+        }
+        
+        .juritech-section {
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .juritech-section h4 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title"><i class="fas fa-balance-scale"></i> Architecture Fonctionnelle</h1>
+            <h2 class="subtitle">Application de Bureau d'Audit RGPD - JuriTech</h2>
+            <div class="local-badge">
+                <i class="fas fa-laptop-house"></i> Environnement 100% Local - Aucun Cloud
+            </div>
+        </div>
+        
+        <div class="architecture-layout">
+            <!-- Ligne du haut : Sources, Application, Stockage -->
+            <div class="top-row">
+                <!-- Sources de données -->
+                <div class="block data-sources">
+                    <h3 class="block-header"><i class="fas fa-database"></i> Sources de données</h3>
+                    
+                    <div class="sub-block">
+                        <div class="sub-block-title">
+                            <i class="fas fa-server"></i> Base de données distante
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-database"></i> PostgreSQL
+                        </div>
+                    </div>
+                    
+                    <div class="sub-block">
+                        <div class="sub-block-title">
+                            <i class="fas fa-file-alt"></i> Dossier de logs
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-file"></i> Fichiers .log / .gz
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-file-code"></i> Fichiers .json / .csv
+                        </div>
+                    </div>
+                    
+                    <div class="sub-block">
+                        <div class="sub-block-title">
+                            <i class="fas fa-globe"></i> Site web
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-cookie-bite"></i> Pour scan cookies
+                        </div>
+                    </div>
+                    
+                    <!-- Indicateur de flux -->
+                    <div class="flow-indicator blue" style="right: -10px; top: 50%;">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="connection-hint" style="right: -90px; top: 50%;">
+                        → Audit
+                    </div>
+                </div>
+                
+                <!-- Application JuriTech -->
+                <div class="block juritech-app">
+                    <h3 class="block-header"><i class="fas fa-laptop-code"></i> Application JuriTech</h3>
+                    <div class="sub-title" style="color: #64748b; margin-bottom: 15px; font-size: 14px;">
+                        <i class="fab fa-python"></i> PySide6 / Qt - Environnement local
+                    </div>
+                    
+                    <div class="juritech-internal">
+                        <!-- Interface utilisateur -->
+                        <div class="juritech-section" style="border-left: 4px solid #f59e0b;">
+                            <h4><i class="fas fa-desktop"></i> Interface</h4>
+                            <div class="sub-block-item">
+                                <i class="fas fa-home"></i> Accueil
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-key"></i> Accès
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-gavel"></i> Règles RGPD
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-play-circle"></i> Exécution audit
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-chart-bar"></i> Dashboard
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-robot"></i> Assistant IA
+                            </div>
+                        </div>
+                        
+                        <!-- Moteur d'audit -->
+                        <div class="juritech-section" style="border-left: 4px solid #10b981;">
+                            <h4><i class="fas fa-cogs"></i> Moteur d'audit</h4>
+                            <div class="sub-block-item">
+                                <i class="fas fa-user-secret"></i> Audit BDD
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-clipboard-list"></i> Audit Logs
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-search"></i> Scan cookies
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-database"></i> Base locale
+                            </div>
+                        </div>
+                        
+                        <!-- IA locale -->
+                        <div class="juritech-section" style="border-left: 4px solid #8b5cf6;">
+                            <h4><i class="fas fa-brain"></i> IA Locale</h4>
+                            <div class="sub-block-item">
+                                <i class="fas fa-microchip"></i> Mistral GGUF
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-cogs"></i> llama.cpp
+                            </div>
+                            <div class="sub-block-item">
+                                <i class="fas fa-comments"></i> Service LLM
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Indicateurs de flux -->
+                    <div class="flow-indicator blue" style="left: -10px; top: 50%;">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                    <div class="flow-indicator orange" style="bottom: -10px; left: 50%;">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="flow-indicator green" style="right: -10px; top: 30%;">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+                
+                <!-- Stockage local -->
+                <div class="block local-storage">
+                    <h3 class="block-header"><i class="fas fa-hdd"></i> Stockage local</h3>
+                    
+                    <div class="sub-block">
+                        <div class="sub-block-title">
+                            <i class="fas fa-database"></i> PostgreSQL (Docker)
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-table"></i> Tables d'audit
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-medkit"></i> Table remédiations
+                        </div>
+                    </div>
+                    
+                    <div class="sub-block">
+                        <div class="sub-block-title">
+                            <i class="fas fa-toolbox"></i> Outils
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-eye"></i> pgAdmin (Docker)
+                        </div>
+                        <div class="sub-block-item">
+                            <i class="fas fa-file-export"></i> Exports
+                        </div>
+                    </div>
+                    
+                    <!-- Indicateur de flux -->
+                    <div class="flow-indicator green" style="left: -10px; top: 40%;">
+                        <i class="fas fa-arrow-left"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ligne du milieu : Utilisateur -->
+            <div class="middle-row">
+                <div class="block user-block" style="grid-column: 1 / span 3;">
+                    <div class="user-avatar">
+                        <div class="avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="user-info">
+                            <h3>Utilisateur</h3>
+                            <p>DPO / Juriste / Auditeur</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+                        <div style="text-align: center;">
+                            <div style="background-color: #fef3c7; padding: 10px; border-radius: 8px; display: inline-block;">
+                                <i class="fas fa-sliders-h" style="color: #f59e0b; font-size: 20px;"></i>
+                            </div>
+                            <p style="font-size: 12px; margin-top: 5px; color: #64748b;">Paramétrage</p>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div style="background-color: #dbeafe; padding: 10px; border-radius: 8px; display: inline-block;">
+                                <i class="fas fa-play-circle" style="color: #3b82f6; font-size: 20px;"></i>
+                            </div>
+                            <p style="font-size: 12px; margin-top: 5px; color: #64748b;">Lancement audit</p>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div style="background-color: #dcfce7; padding: 10px; border-radius: 8px; display: inline-block;">
+                                <i class="fas fa-chart-bar" style="color: #10b981; font-size: 20px;"></i>
+                            </div>
+                            <p style="font-size: 12px; margin-top: 5px; color: #64748b;">Visualisation</p>
+                        </div>
+                        
+                        <div style="text-align: center;">
+                            <div style="background-color: #f3e8ff; padding: 10px; border-radius: 8px; display: inline-block;">
+                                <i class="fas fa-file-export" style="color: #8b5cf6; font-size: 20px;"></i>
+                            </div>
+                            <p style="font-size: 12px; margin-top: 5px; color: #64748b;">Export résultats</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Indicateur de flux -->
+                    <div class="flow-indicator orange" style="top: -10px; left: 50%;">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Légende des zones -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #3b82f6;"></div>
+                <span>Sources de données</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #f97316;"></div>
+                <span>Application JuriTech</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #10b981;"></div>
+                <span>Stockage local</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #8b5cf6;"></div>
+                <span>Interface utilisateur</span>
+            </div>
+            <div class="legend-item">
+                <i class="fas fa-laptop-house"></i>
+                <span>Environnement 100% local</span>
+            </div>
+        </div>
+        
+        <!-- Explication du flux -->
+        <div style="background-color: #f8fafc; border-radius: 10px; padding: 20px; margin-top: 30px;">
+            <h4 style="color: #1e3a8a; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-project-diagram"></i> Flux fonctionnel
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
+                <div style="background-color: white; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                    <h5 style="color: #475569; font-size: 14px; margin-bottom: 8px;">1. Collecte</h5>
+                    <p style="font-size: 13px; color: #64748b;">Lecture des sources (BDD, logs, sites web)</p>
+                </div>
+                <div style="background-color: white; padding: 15px; border-radius: 8px; border-left: 4px solid #f97316;">
+                    <h5 style="color: #475569; font-size: 14px; margin-bottom: 8px;">2. Analyse</h5>
+                    <p style="font-size: 13px; color: #64748b;">Audit RGPD via moteur et IA locale</p>
+                </div>
+                <div style="background-color: white; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <h5 style="color: #475569; font-size: 14px; margin-bottom: 8px;">3. Stockage</h5>
+                    <p style="font-size: 13px; color: #64748b;">Sauvegarde des résultats en local</p>
+                </div>
+                <div style="background-color: white; padding: 15px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <h5 style="color: #475569; font-size: 14px; margin-bottom: 8px;">4. Visualisation</h5>
+                    <p style="font-size: 13px; color: #64748b;">Dashboard et export pour l'utilisateur</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Architecture fonctionnelle - JuriTech - Application d'audit RGPD</p>
+            <p>Format paysage 16:9 | Tous les composants s'exécutent localement (PostgreSQL Docker, IA hors ligne)</p>
+        </div>
+    </div>
+    
+    <script>
+        // Animation simple au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            const blocks = document.querySelectorAll('.block');
+            
+            blocks.forEach((block, index) => {
+                setTimeout(() => {
+                    block.style.opacity = '0';
+                    block.style.transform = 'translateY(20px)';
+                    block.style.transition = 'opacity 0.5s, transform 0.5s';
+                    
+                    setTimeout(() => {
+                        block.style.opacity = '1';
+                        block.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 150);
+            });
+            
+            // Animation des indicateurs de flux
+            const indicators = document.querySelectorAll('.flow-indicator');
+            indicators.forEach((indicator, index) => {
+                setTimeout(() => {
+                    indicator.style.opacity = '0';
+                    indicator.style.transform = 'scale(0.8)';
+                    indicator.style.transition = 'opacity 0.5s, transform 0.5s';
+                    
+                    setTimeout(() => {
+                        indicator.style.opacity = '1';
+                        indicator.style.transform = 'scale(1)';
+                    }, 200);
+                }, 800 + index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
