@@ -256,8 +256,8 @@ st.markdown("""
     .accent-text2 { background: linear-gradient(120deg, var(--secondary-accent), #ff7eb9); }
     .accent-text3 { background: linear-gradient(120deg, #ff7eb9, var(--primary-accent)); }
     
-    /* Hide footer and header */
-    #MainMenu, footer, header { visibility: hidden; }
+    /* Keep header visible so sidebar reopen control remains available */
+    #MainMenu, footer { visibility: hidden; }
     
     /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] button {
