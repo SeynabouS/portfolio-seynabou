@@ -918,11 +918,11 @@ elif page == "🧑‍💼 Expériences":
                 <span class="exp-tech-badge">Python (Pandas, Scapy)</span>
                 <span class="exp-tech-badge">PostgreSQL</span>
                 <span class="exp-tech-badge">GIT</span>
-                <span class="exp-tech-badge">Sécurité Réseau (Firewalls, VPN, 802.1X)</span>
+                <span class="exp-tech-badge">Sécurité Réseau</span>
                 <span class="exp-tech-badge">Audit Technique</span>
             </div>
             <div class="exp-highlight">
-                <strong>Point fort :</strong> Forte montée en compétence sur l'automatisation de la sécurité ("Security as Code") et l'analyse de données pour la cyberdéfense.
+                <strong>Point fort :</strong> Forte montée en compétence sur l'automatisation de la sécurité ("Security as Code") et l'analyse de données.
             </div>
         </div>
     </div>
