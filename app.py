@@ -1027,8 +1027,7 @@ elif page == "🧑‍💼 Expériences":
             - Scoring de vulnérabilités
             - Alertes prioritaires
             """)
-        with col2:
-            st.image("https://via.placeholder.com/400x300?text=Architecture+Solution", use_column_width=True)
+        
         
         st.markdown("""
         ```python
@@ -1061,7 +1060,6 @@ elif page == "🧑‍💼 Expériences":
         for i, (name, (icon, value, delta)) in enumerate(metrics.items()):
             cols[i].metric(f"{icon} {name}", value, delta)
         
-        st.image("https://via.placeholder.com/800x400?text=Dashboard+PowerBI+Résultats", use_column_width=True)
     
     with tab4:
         st.markdown("""
