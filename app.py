@@ -1007,7 +1007,6 @@ elif page == "🧑‍💼 Expériences":
         </div>
         """, unsafe_allow_html=True)
         
-        st.image("https://via.placeholder.com/800x400?text=Processus+Manuel+vs+Automatisé", use_column_width=True)
     
     with tab2:
         st.markdown("""
