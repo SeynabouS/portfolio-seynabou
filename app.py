@@ -7,6 +7,7 @@ import altair as alt
 import random
 import requests
 import numpy as np
+import os
 from textwrap import dedent
 def generate_attack_data():
     base = np.random.poisson(50, 24)
@@ -1473,12 +1474,20 @@ Message:
 {message}
 """)
                     msg['Subject'] = f"Nouveau message de {name}"
-                    msg['From'] = "seynabousougou21@gmail.com"
-                    msg['To'] = "seynabousougou21@gmail.com"
+                    smtp_email = os.getenv("SMTP_EMAIL")
+                    smtp_password = os.getenv("SMTP_PASSWORD")
+                    contact_to = os.getenv("CONTACT_TO", smtp_email or "seynabousougou21@gmail.com")
+
+                    if not smtp_email or not smtp_password:
+                        st.error("Le formulaire n'est pas encore configure. Contactez-moi directement par email.")
+                        st.stop()
+
+                    msg['From'] = smtp_email
+                    msg['To'] = contact_to
 
                     with smtplib.SMTP('smtp.gmail.com', 587) as server:
                         server.starttls()
-                        server.login("seynabousougou21@gmail.com", "fugmyyfhtuoxsfda")
+                        server.login(smtp_email, smtp_password)
                         server.send_message(msg)
 
                     st.success("✅ Message envoyé avec succès !")
