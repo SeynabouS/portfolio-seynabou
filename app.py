@@ -23,7 +23,7 @@ def generate_attack_data():
 st.set_page_config(
     page_title="Seynabou Sougou - Portfolio Cybersécurité",
     layout="wide",
-    page_icon="🛡️",
+    page_icon="S",
     initial_sidebar_state="expanded",
 )
 
@@ -317,6 +317,155 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("""
+<style>
+    :root {
+        --primary-accent: #0f766e;
+        --secondary-accent: #b45309;
+        --bg-dark: #f7f8fb;
+        --bg-card: #ffffff;
+        --text-light: #111827;
+        --text-muted: #4b5563;
+        --text-dark: #111827;
+        --border-color: rgba(17, 24, 39, 0.11);
+        --border-color-dark: rgba(17, 24, 39, 0.08);
+        --bg-subtle: #f1f5f9;
+        --shadow-glow: 0 16px 38px rgba(15, 23, 42, 0.08);
+        --border-radius: 8px;
+    }
+
+    .stApp {
+        background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 52%, #eef3f6 100%);
+        color: var(--text-light);
+    }
+
+    [data-testid="stHeader"] {
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(17, 24, 39, 0.06);
+    }
+
+    [data-testid="stSidebar"] {
+        background: #111827;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    [data-testid="stSidebar"] * {
+        color: #f9fafb !important;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label {
+        border-radius: 8px;
+        padding: 8px 10px;
+        margin: 2px 0;
+    }
+
+    .block-container {
+        max-width: 1180px;
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+    }
+
+    h1 {
+        font-size: clamp(2.2rem, 4vw, 4.2rem);
+        line-height: 1.02;
+        letter-spacing: 0;
+        color: #111827;
+        background: none;
+        -webkit-text-fill-color: initial;
+        margin-bottom: 1rem;
+    }
+
+    h2, h3, h4, h5, h6 {
+        letter-spacing: 0;
+        color: #111827;
+    }
+
+    p, li {
+        color: #374151;
+    }
+
+    .status-badge {
+        background: #ecfeff;
+        border: 1px solid #99f6e4;
+        color: #115e59;
+        border-radius: 8px;
+        box-shadow: none;
+        padding: 9px 13px;
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .project-card, .accueil-container, .fun-fact, .stMetric {
+        background: #ffffff;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 14px 36px rgba(15, 23, 42, 0.07);
+    }
+
+    .project-card {
+        border-left: 4px solid var(--primary-accent);
+    }
+
+    .project-card:hover, .fun-fact:hover {
+        transform: none;
+        border-color: rgba(15, 118, 110, 0.38);
+        box-shadow: 0 18px 46px rgba(15, 23, 42, 0.1);
+    }
+
+    .stButton > button,
+    .stDownloadButton > button {
+        background: #0f766e;
+        color: white;
+        border-radius: 8px;
+        box-shadow: none;
+        text-transform: none;
+        letter-spacing: 0;
+        font-weight: 650;
+        border: 1px solid rgba(15, 118, 110, 0.2);
+    }
+
+    .stButton > button:hover,
+    .stDownloadButton > button:hover {
+        background: #115e59;
+        transform: none;
+        box-shadow: 0 10px 24px rgba(15, 118, 110, 0.2);
+    }
+
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 6px;
+        border-bottom: 1px solid rgba(17, 24, 39, 0.1);
+    }
+
+    .stTabs [data-baseweb="tab-list"] button {
+        margin: 0;
+        color: #4b5563;
+    }
+
+    .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
+        color: #0f766e;
+        border-bottom-color: #0f766e;
+    }
+
+    [data-testid="stExpander"] {
+        background: #ffffff;
+        border: 1px solid rgba(17, 24, 39, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    [data-testid="stImage"] img {
+        border-radius: 8px;
+    }
+
+    hr {
+        border-color: rgba(17, 24, 39, 0.08);
+        margin: 2rem 0;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Sidebar (menu)
 with st.sidebar:
     st.title("Navigation")
@@ -331,7 +480,7 @@ with st.sidebar:
     st.markdown("---")
     
     page = st.radio("Aller vers :", 
-               ["🏠 Accueil", "🚀 Projets", "🧑‍💼 Expériences", "🛠️ Compétences", "📄 CV", "📱 Contact"])
+               ["Accueil", "Projets", "Expériences", "Compétences", "CV", "Contact"])
 
     st.markdown("---")
     st.markdown("""
@@ -345,9 +494,9 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # Accueil
-if page == "🏠 Accueil":
+if page == "Accueil":
     # En-tête professionnel
-    st.markdown('<div class="status-badge">🎓 Fin d\'études : Août 2026 | 💼 Disponible pour CDI : Septembre 2026</div>', unsafe_allow_html=True)
+    st.markdown('<div class="status-badge">Fin d\'études : août 2026 | Disponible pour CDI : septembre 2026</div>', unsafe_allow_html=True)
     st.title("Seynabou Sougou")
     st.markdown("### Future Ingénieure en Audit & Sécurité des Infrastructures")
     
@@ -397,7 +546,7 @@ if page == "🏠 Accueil":
         """, unsafe_allow_html=True)
     
     st.markdown("---")
-    st.markdown("### 📊 Indicateurs Clés")
+    st.markdown("### Indicateurs clés")
     col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Expérience en Audit & Infra", "4 ans", "Apprentissage")
@@ -407,19 +556,19 @@ if page == "🏠 Accueil":
         st.metric("Disponibilité CDI", "Sept. 2026", "Mobile France")
 
 # Projets
-elif page == "🚀 Projets":
+elif page == "Projets":
     st.title("Portfolio de Projets")
     st.markdown("Sélection de réalisations techniques démontrant mes compétences en défense et développement.")
 
     # Projet JuriTech
-    with st.expander("⚖️ JuriTech – Solution d’Audit RGPD Automatisée", expanded=True):
+    with st.expander("JuriTech - Solution d'audit RGPD automatisée", expanded=True):
         st.markdown("""
         <div class="project-card">
         <h3 style="color:var(--primary-accent);">Projet de fin d’études pour EY</h3>
         Solution innovante pour l'automatisation des audits de conformité RGPD, alliant expertise juridique et intelligence artificielle.
         <br><br>
-        🔧 <b>Stack Technique :</b> Backend Modulaire, Base de données relationnelle, IA Locale sécurisée
-        🎯 <b>Objectif :</b> Standardiser, accélérer et fiabiliser les audits RGPD pour les organisations.
+        <b>Stack technique :</b> Backend modulaire, base de données relationnelle, IA locale sécurisée<br>
+        <b>Objectif :</b> Standardiser, accélérer et fiabiliser les audits RGPD pour les organisations.
         </div>
         """, unsafe_allow_html=True)
 
@@ -464,12 +613,12 @@ def evaluate_compliance(data_processing_activity):
         with tab3:
             st.markdown("#### IA Locale & Cybersécurité")
             st.markdown("""
-            **🤖 Intégration d’une IA locale sécurisée**
+            **Intégration d’une IA locale sécurisée**
             - Développement d’un chatbot d’assistance RGPD.
             - Utilisation d'un modèle IA exécuté en environnement contrôlé, sans exposition de données sensibles à des APIs externes.
             - Conception d’un système d’aide contextuelle basé sur les résultats d’audit.
             
-            **🔐 Dimension Cybersécurité ("Privacy by Design")**
+            **Dimension cybersécurité ("Privacy by Design")**
             - **Sécurisation des données d’audit :** Chiffrement et contrôles d'accès stricts.
             - **Cloisonnement des traitements :** Isolation des différents modules de l'application.
             - **Protection des données sensibles :** Anonymisation et pseudonymisation des données lorsque possible.
@@ -499,8 +648,8 @@ def evaluate_compliance(data_processing_activity):
         <h3 style="color:var(--primary-accent);">Purple Teaming Lab</h3>
         Mise en place d'un environnement de test pour simuler des attaques (Red Team) et configurer les défenses appropriées (Blue Team).
         <br><br>
-        🔧 <b>Stack Technique :</b> Kali Linux, Metasploit, Wireshark, Fail2Ban
-        🎯 <b>Objectif :</b> Analyser les signatures d'attaques pour affiner les règles de détection.
+        <b>Stack technique :</b> Kali Linux, Metasploit, Wireshark, Fail2Ban<br>
+        <b>Objectif :</b> Analyser les signatures d'attaques pour affiner les règles de détection.
         </div>
         """, unsafe_allow_html=True)
 
@@ -535,7 +684,7 @@ def evaluate_compliance(data_processing_activity):
             3. Attaque par dictionnaire (Hydra)
             4. Détection et bannissement IP (Fail2Ban)
             """)
-            if st.button("▶️ Lancer la simulation (Logs)"):
+            if st.button("Lancer la simulation des logs"):
                 st.markdown("""
                 <div class="hack-animation">
                 > ssh admin@192.168.1.1<br>
@@ -545,11 +694,11 @@ def evaluate_compliance(data_processing_activity):
                 > Connection closed by 192.168.1.1 [FAIL2BAN]
                 </div>
                 """, unsafe_allow_html=True)
-                st.success("✅ IP attaquante bannie automatiquement.")
+                st.success("IP attaquante bannie automatiquement.")
 
         with tab3:
             st.markdown("""
-            **💡 Compétences validées :**
+            **Compétences validées :**
             - Hardening de serveurs Linux
             - Configuration de règles IPS/IDS
             - Analyse de flux chiffrés
@@ -580,7 +729,7 @@ def evaluate_compliance(data_processing_activity):
 
         with col2:
             st.markdown("""
-            🔎 **Workflow de traitement :**
+            **Workflow de traitement :**
             1. Ingestion des logs (Logstash)
             2. Parsing et enrichissement (GeoIP)
             3. Visualisation (Kibana)
@@ -601,11 +750,11 @@ def evaluate_compliance(data_processing_activity):
 
     # NeuralFirewall (séparé car pas imbriqué)
     st.markdown("---")
-    st.subheader("🤖 NeuralFirewall - Détection par IA")
+    st.subheader("NeuralFirewall - Détection par IA")
 
     st.markdown("""
     <div style="border-left: 4px solid var(--primary-accent); padding-left: 15px;">
-    <h3 style="color:var(--text-light);">🛡️ Architecture Zero Trust + Machine Learning</h3>
+    <h3 style="color:var(--text-light);">Architecture Zero Trust + Machine Learning</h3>
     <b>But :</b> détecter les attaques discrètes (DDoS lent, exfiltration...) non captées par des règles fixes.
     </div>
     """, unsafe_allow_html=True)
@@ -622,7 +771,7 @@ def evaluate_compliance(data_processing_activity):
         st.metric("Précision", "92.4%", "±1.2%")
     with col2:
         st.markdown("""
-        📊 Features analysées :
+        Features analysées :
         - Intervalle paquets
         - Ratio up/down
         - Payload entropy
@@ -631,7 +780,7 @@ def evaluate_compliance(data_processing_activity):
         """)
         st.metric("Temps d’analyse", "8.3ms")
 
-    st.markdown("### 📉 Simulation de Trafic")
+    st.markdown("### Simulation de trafic")
 
     attack_data = generate_attack_data()
     chart = alt.Chart(attack_data).mark_area().encode(
@@ -649,7 +798,7 @@ def evaluate_compliance(data_processing_activity):
     with st.expander("Infrastructure VPN Sécurisée", expanded=True):
         st.markdown("""
         <div style="border-left: 4px solid var(--secondary-accent); padding-left: 15px;">
-        <h3 style="color:var(--text-light);">🔒 VPN Site-à-Site & Accès Distant</h3>
+        <h3 style="color:var(--text-light);">VPN Site-à-Site & Accès Distant</h3>
         - OpenVPN + LDAP + MFA  
         - Grafana + HAProxy  
         - VM dédiées pour chaque composant
@@ -667,7 +816,7 @@ def evaluate_compliance(data_processing_activity):
         with col3:
             st.metric("Uptime", "99.98%")
 
-        st.markdown("#### 📜 Extrait de configuration (Ansible)")
+        st.markdown("#### Extrait de configuration (Ansible)")
         st.code("""
         - name: Install OpenVPN
           apt:
@@ -685,7 +834,7 @@ def evaluate_compliance(data_processing_activity):
         """, language='yaml')
 
         st.markdown("""
-        **🔐 Mesures de sécurité implémentées :**
+        **Mesures de sécurité implémentées :**
         - Segmentation réseau
         - Audit quotidien
         - Rotation de certificats
@@ -693,7 +842,7 @@ def evaluate_compliance(data_processing_activity):
         - Backups chiffrés
         """)
 
-elif page == "🧑‍💼 Expériences":
+elif page == "Expériences":
     st.title("Parcours Professionnel")
     
     # HTML content for the experiences page, including CSS and the two experience cards.
@@ -992,7 +1141,7 @@ elif page == "🧑‍💼 Expériences":
 
     # Section détaillée pour le projet phare
     st.markdown("---")
-    st.header("🛠️ Projet Phare: Automatisation des Audits Réseau")
+    st.header("Projet phare : automatisation des audits réseau")
     
     tab1, tab2, tab3, tab4 = st.tabs(["Contexte", "Solution", "Résultats", "Code Exemple"])
     
@@ -1004,7 +1153,7 @@ elif page == "🧑‍💼 Expériences":
         - **Délai:** 2 jours/audit en analyse manuelle
         
         <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin: 15px 0;">
-            <b>🕵️‍♀️ Constat :</b> 80% du temps passé sur des tâches répétitives (vérification de cohérence, recherche d'anomalies)
+            <b>Constat :</b> 80% du temps passé sur des tâches répétitives (vérification de cohérence, recherche d'anomalies)
         </div>
         """, unsafe_allow_html=True)
         
@@ -1017,13 +1166,13 @@ elif page == "🧑‍💼 Expériences":
         col1, col2 = st.columns(2)
         with col1:
             st.markdown("""
-            **📦 Composants :**
+            **Composants :**
             1. Module d'import Excel → DataFrame
             2. Moteur de règles (200+ checks)
             3. Génération de rapports (PDF/Excel)
             4. Dashboard PowerBI
             
-            **⚙️ Fonctionnalités :**
+            **Fonctionnalités :**
             - Détection automatique des anomalies
             - Scoring de vulnérabilités
             - Alertes prioritaires
@@ -1052,14 +1201,14 @@ elif page == "🧑‍💼 Expériences":
         """)
         
         metrics = {
-            "Temps d'analyse": ("⏱️", "2 jours → 2 heures", "-92%"),
-            "Précision": ("🎯", "85% → 99%", "+14%"),
-            "Couverture": ("🔍", "50 checks → 200+", "+300%")
+            "Temps d'analyse": ("2 jours → 2 heures", "-92%"),
+            "Précision": ("85% → 99%", "+14%"),
+            "Couverture": ("50 checks → 200+", "+300%")
         }
         
         cols = st.columns(3)
-        for i, (name, (icon, value, delta)) in enumerate(metrics.items()):
-            cols[i].metric(f"{icon} {name}", value, delta)
+        for i, (name, (value, delta)) in enumerate(metrics.items()):
+            cols[i].metric(name, value, delta)
         
     
     with tab4:
@@ -1094,7 +1243,7 @@ def process_audit(file_path):
         st.code(code, language='python')
         
         st.download_button(
-            label="📥 Télécharger un exemple de sortie",
+            label="Télécharger un exemple de sortie",
             data=pd.DataFrame({
                 'Équipement': ['SW-001', 'RT-002', 'FW-003'],
                 'Vulnérabilités': [2, 5, 1],
@@ -1106,7 +1255,7 @@ def process_audit(file_path):
 
     # Section compétences acquises
     st.markdown("---")
-    st.header("📈 Compétences Développées")
+    st.header("Compétences développées")
     
     skills = {
         "Analytique": ["Analyse de logs", "Corrélation d'événements", "Tri des alertes"],
@@ -1130,7 +1279,7 @@ def process_audit(file_path):
     """, unsafe_allow_html=True)
 
 # Compétences
-elif page == "🛠️ Compétences":
+elif page == "Compétences":
     
     st.title("Compétences Techniques")
     
@@ -1195,7 +1344,7 @@ elif page == "🛠️ Compétences":
             """, unsafe_allow_html=True)
 
     with tab2:
-        st.markdown("### 🛡️ Expertise Cybersécurité")
+        st.markdown("### Expertise cybersécurité")
         
         col1, col2 = st.columns(2)
         
@@ -1248,7 +1397,7 @@ elif page == "🛠️ Compétences":
             """, unsafe_allow_html=True)
 
     with tab3:
-        st.markdown("### 📚 Formation Continue")
+        st.markdown("### Formation continue")
         
         st.markdown("""
         
@@ -1256,16 +1405,16 @@ elif page == "🛠️ Compétences":
             <h4 style="color: var(--text-light); border-bottom: 1px solid var(--border-color); padding-bottom: 8px;">Ressources</h4>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 12px;">
                 <div style="background-color: var(--bg-subtle); color: var(--text-light); padding: 10px; border-radius: 8px;">
-                    <b>📖 Lectures</b><br>SANS, Medium, ZDNet
+                    <b>Lectures</b><br>SANS, Medium, ZDNet
                 </div>
                 <div style="background-color: var(--bg-subtle); color: var(--text-light);  padding: 10px; border-radius: 8px;">
-                    <b>🎧 Podcasts</b><br>NoLimitSecu, CyberUncut
+                    <b>Podcasts</b><br>NoLimitSecu, CyberUncut
                 </div>
                 <div style="background-color: var(--bg-subtle); color: var(--text-light);  padding: 10px; border-radius: 8px;">
-                    <b>📺 Vidéos</b><br>LiveOverflow, The Cyber Mentor
+                    <b>Vidéos</b><br>LiveOverflow, The Cyber Mentor
                 </div>
                 <div style="background-color: var(--bg-subtle); padding: 10px; color: var(--text-light);  border-radius: 8px;">
-                    <b>💬 Événements</b><br>FIC, Root-Me, Meetups
+                    <b>Événements</b><br>FIC, Root-Me, Meetups
                 </div>
             </div>
         </div>
@@ -1282,7 +1431,7 @@ elif page == "🛠️ Compétences":
         """, unsafe_allow_html=True)
 
     with tab4:
-        st.markdown("### 🤝 Soft Skills & Méthodologie")
+        st.markdown("### Soft skills & méthodologie")
         
         col1, col2 = st.columns(2)
         
@@ -1336,13 +1485,13 @@ elif page == "🛠️ Compétences":
         """, unsafe_allow_html=True)
 
 # CV
-elif page == "📄 CV":
-    st.title("📄 Mon CV Interactif")
+elif page == "CV":
+    st.title("Mon CV interactif")
     
     col1, col2 = st.columns([3, 1])
     with col1:
         st.markdown("""
-        ### 📌 Version PDF
+        ### Version PDF
         Voici mon CV détaillé au format PDF. Vous pouvez le visualiser directement ici ou le télécharger.
         """)
         
@@ -1354,7 +1503,7 @@ elif page == "📄 CV":
                 st.markdown(pdf_display, unsafe_allow_html=True)
                 
                 st.download_button(
-                    label="📥 Télécharger le CV",
+                    label="Télécharger le CV",
                     data=pdf_bytes,
                     file_name="CV_Seynabou_Sougou_2026.pdf",
                     mime="application/pdf"
@@ -1365,29 +1514,29 @@ elif page == "📄 CV":
     
     with col2:
         st.markdown("""
-        ### 🎯 Profil Rapide
+        ### Profil rapide
         **Seynabou Sougou**  
         *Future Ingénieure en Cybersécurité (2026)*
         
         ---
         
-        🛡️ **Spécialité**  
+        **Spécialité**  
         Audit, Sécurité Infrastructure & Automatisation
         
-        🔧 **Compétences Clés**  
+        **Compétences clés**  
         Python, Audit de sécurité, Réseau, Linux, Conformité (RGPD, ISO 27001)
         
-        💼 **Expériences**  
+        **Expériences**  
         SIPPEREC (Audit & Automatisation), Orange Cyberdefense (SOC)
         
-        📍 **Mobilité**  
+        **Mobilité**  
         Paris, Toulouse, France
         """)
         
         st.markdown("---")
 
         st.markdown("""
-        ### 📊 Indicateurs
+        ### Indicateurs
         - Automatisation de **+10 processus d'audit** via Python
         - **+100 analyses** de données de sécurité
         - Rédaction de **+20 documents** techniques (rapports, référentiels)
@@ -1397,42 +1546,42 @@ elif page == "📄 CV":
         st.markdown("---")
 
         st.markdown("""
-        ### 🔎 Ce que je recherche
+        ### Ce que je recherche
         Un CDI en **audit cybersécurité**, **sécurité des infrastructures** ou **GRC technique**, dans une équipe de type SecOps (hors 24/7).
         """)
 
 # Contact
-elif page == "📱 Contact":
+elif page == "Contact":
     st.title("Contact Professionnel")
     
     # Section contacts
-    st.markdown("### 🤝 Discutons de votre sécurité")
+    st.markdown("### Parlons sécurité et opportunités")
     st.info("À la recherche d'un poste en CDI à partir de Septembre 2026.")
 
     col1, col2 = st.columns(2)
 
     with col1:
         st.markdown("""
-        **📧 Email pro :**  
+        **Email pro :**  
         [seynabousougou21@gmail.com](mailto:seynabousougou21@gmail.com)  
         *(Réponse garantie sous 48h)*
 
-        **📱 Téléphone :**  
+        **Téléphone :**  
         [+33 6 67 04 73 41](tel:+33667047341)  
         
 
-        **💼 LinkedIn :**  
+        **LinkedIn :**  
         [Seynabou Sougou](https://www.linkedin.com/in/seynabousougou/)  
         
         """)
 
     with col2:
         st.markdown("""
-        **🐱‍💻 GitHub :**  
+        **GitHub :**  
         [github.com/seynabou-s](https://github.com/seynabou-s)  
         *(Projets publics et contributions)*
 
-        **📍 Localisation :**  
+        **Localisation :**  
         Paris, France  
         *(Mobile sur toute la France)*
         """)
@@ -1440,9 +1589,9 @@ elif page == "📱 Contact":
     st.markdown("---")
     
     # Section disponibilités
-    st.markdown("### 📅 Mes disponibilités")
+    st.markdown("### Disponibilités")
     st.markdown("""
-    ✅ **Ouverte aux opportunités pour :**
+    **Ouverte aux opportunités pour :**
     - CDI (Ingénieur Cybersécurité / SOC / Pentest) - **Dès Septembre 2026**
     - Échanges techniques et retours d'expérience
     """)
@@ -1450,13 +1599,13 @@ elif page == "📱 Contact":
     
     # Formulaire de contact
     with st.form("contact_form", clear_on_submit=True):
-        st.markdown("### ✉️ Formulaire de contact direct")
+        st.markdown("### Formulaire de contact direct")
         
         name = st.text_input("Nom complet*", placeholder="Votre nom")
         email = st.text_input("Email*", placeholder="email@exemple.com")
         message = st.text_area("Message*", placeholder="Votre message...", height=150)
         
-        submitted = st.form_submit_button("Envoyer le message 🔒")
+        submitted = st.form_submit_button("Envoyer le message")
         
         if submitted:
             if not all([name, email, message]):
@@ -1490,7 +1639,6 @@ Message:
                         server.login(smtp_email, smtp_password)
                         server.send_message(msg)
 
-                    st.success("✅ Message envoyé avec succès !")
-                    st.balloons()
+                    st.success("Message envoyé avec succès.")
                 except Exception as e:
-                    st.error(f"❌ Erreur : {e}. Contactez-moi directement par email.")
+                    st.error(f"Erreur : {e}. Contactez-moi directement par email.")
