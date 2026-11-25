@@ -43,7 +43,7 @@ def project_card(project: dict) -> str:
     if project.get("url"):
         source = (
             f'<a class="text-link" href="{escape(project["url"], quote=True)}" '
-            'target="_blank" rel="noopener noreferrer">Consulter le projet sur GitHub ↗</a>'
+            'target="_blank" rel="noopener noreferrer">Consulter le projet sur GitHub</a>'
         )
     return f"""
     <article class="project-card" id="{escape(project['id'])}">
@@ -81,7 +81,7 @@ html("""
     <a href="#parcours" target="_self">Parcours</a>
     <a href="#competences" target="_self">Compétences</a>
     <a href="#cv" target="_self">Mon CV</a>
-    <a href="#contact" class="nav-contact" target="_self">Échangeons <span aria-hidden="true">↗</span></a>
+    <a href="#contact" class="nav-contact" target="_self">Échangeons <span class="arrow-icon" aria-hidden="true"></span></a>
   </nav>
 </header>
 """)
@@ -98,7 +98,7 @@ html(f"""
       automatisent les contrôles et aident à protéger les infrastructures.
       Une approche technique, avec le sens du besoin métier.</p>
     <div class="hero-actions">
-      <a class="button button-accent" href="#projets" target="_self">Découvrir mes projets <span aria-hidden="true">↗</span></a>
+      <a class="button button-accent" href="#projets" target="_self">Découvrir mes projets <span class="arrow-icon" aria-hidden="true"></span></a>
       <a class="button button-outline" href="#cv" target="_self">Consulter mon CV</a>
     </div>
     <p class="hero-location">Île-de-France & Toulouse</p>
@@ -106,7 +106,7 @@ html(f"""
   <div class="hero-visual">
     <img class="portrait" src="data:image/jpeg;base64,{portrait}"
       alt="Portrait de Seynabou Sougou" width="688" height="1298">
-    <div class="portrait-note"><span class="note-symbol" aria-hidden="true">↗</span>
+    <div class="portrait-note"><span class="note-symbol arrow-icon" aria-hidden="true"></span>
       <span>Du besoin métier<br><strong>à la solution opérationnelle.</strong></span></div>
   </div>
 </section>
@@ -223,10 +223,10 @@ html(f"""
       en Île-de-France ou à Toulouse.</p>
   </div>
   <div class="contact-links">
-    <a href="mailto:{EMAIL}"><span><small>PAR EMAIL</small>{EMAIL}</span><span aria-hidden="true">↗</span></a>
-    <a href="{LINKEDIN}" target="_blank" rel="noopener noreferrer"><span><small>RÉSEAU PROFESSIONNEL</small>LinkedIn</span><span aria-hidden="true">↗</span></a>
-    <a href="{GITHUB}" target="_blank" rel="noopener noreferrer"><span><small>CODE & PROJETS PUBLICS</small>GitHub</span><span aria-hidden="true">↗</span></a>
-    <a href="tel:+33667047341"><span><small>PAR TÉLÉPHONE</small>+33 6 67 04 73 41</span><span aria-hidden="true">↗</span></a>
+    <a href="mailto:{EMAIL}"><span><small>PAR EMAIL</small>{EMAIL}</span><span class="arrow-icon" aria-hidden="true"></span></a>
+    <a href="{LINKEDIN}" target="_blank" rel="noopener noreferrer"><span><small>RÉSEAU PROFESSIONNEL</small>LinkedIn</span><span class="arrow-icon" aria-hidden="true"></span></a>
+    <a href="{GITHUB}" target="_blank" rel="noopener noreferrer"><span><small>CODE & PROJETS PUBLICS</small>GitHub</span><span class="arrow-icon" aria-hidden="true"></span></a>
+    <a href="tel:+33667047341"><span><small>PAR TÉLÉPHONE</small>+33 6 67 04 73 41</span><span class="arrow-icon" aria-hidden="true"></span></a>
   </div>
 </section>
 <footer class="site-footer"><span>© 2026 Seynabou Sougou</span>
